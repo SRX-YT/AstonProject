@@ -24,12 +24,22 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = this.model == null ? 0 : this.model.hashCode();
+        result = 31 * result + this.yearOfProduction;
+        result = 31 * result + this.horsePower;
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Car car = (Car) obj;
+
+        if (this.horsePower != car.horsePower) return false;
+        if (this.yearOfProduction != car.yearOfProduction) return false;
+        return this.model.equals(car.model);
     }
 
     @Override
@@ -50,6 +60,10 @@ public class Car implements Comparable<Car> {
 
         public Car build() { return new Car(this); }
 
-        // public Car reset() { }
+        public void resetBuilder() {
+            this.horsePower = 0;
+            this.yearOfProduction = 0;
+            this.model = null;
+        }
     }
 }
