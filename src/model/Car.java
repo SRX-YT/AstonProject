@@ -1,8 +1,8 @@
 package model;
 
 public class Car implements Comparable<Car> {
-    private int horsePower;
-    private int yearOfProduction;
+    private Integer horsePower;
+    private Integer yearOfProduction;
     private String model;
 
     private Car(CarBuilder carBuilder) {
