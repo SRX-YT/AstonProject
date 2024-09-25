@@ -45,7 +45,9 @@ public class Book implements Comparable<Book> {
     @Override
     public int hashCode() {
         int result = author == null ? 0 : author.hashCode();
-        return title == null ? result : title.hashCode() + result;
+        result += title == null ? 0 : title.hashCode();
+        result = 31 * result * pages;
+        return result;
     }
 
     // Внутренний класс билдер
