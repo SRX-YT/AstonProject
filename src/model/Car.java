@@ -1,27 +1,31 @@
 package model;
 
 public class Car implements Comparable<Car> {
-    private final Integer power;
-    private final Integer year;
     private final String model;
+    private final int power;
+    private final int year;
 
-    public Car(CarBuilder carBuilder) {
-        this.power = carBuilder.power;
-        this.year = carBuilder.year;
-        this.model = carBuilder.model;
-
-        carBuilder.resetBuilder();
+    private Car(CarBuilder builder) {
+        this.model = builder.model;
+        this.power = builder.power;
+        this.year = builder.year;
     }
 
-    public Integer getPower() { return this.power; }
+    public String getModel() {
+        return model;
+    }
 
-    public Integer getYear() { return this.year; }
+    public int getPower() {
+        return power;
+    }
 
-    public String getModel() { return this.model; }
+    public int getYear() {
+        return year;
+    }
 
     @Override
     public int compareTo(Car other) {
-        return this.model.compareTo(other.model);
+        return this.model.compareTo(other.model); // Сортировка по модели по умолчанию
     }
 
     @Override
@@ -39,8 +43,8 @@ public class Car implements Comparable<Car> {
 
         Car car = (Car) obj;
 
-        if (!this.power.equals(car.power)) return false;
-        if (!this.year.equals(car.year)) return false;
+        if (this.power != car.power) return false;
+        if (this.year != car.year) return false;
         return this.model.equals(car.model);
     }
 
@@ -50,33 +54,27 @@ public class Car implements Comparable<Car> {
     }
 
     public static class CarBuilder {
-        private Integer power;
-        private Integer year;
         private String model;
-
-        public CarBuilder setHorsePower(int horsePower) {
-            this.power = horsePower;
-            return this;
-        }
-
-        public CarBuilder setYearOfProduction(int year) {
-            this.year = year;
-            return this;
-        }
+        private int power;
+        private int year;
 
         public CarBuilder setModel(String model) {
             this.model = model;
             return this;
         }
 
-        public Car build() {
-            return new Car(this);
+        public CarBuilder setPower(int power) {
+            this.power = power;
+            return this;
         }
 
-        public void resetBuilder() {
-            this.model = null;
-            this.power = null;
-            this.year = null;
+        public CarBuilder setYear(int year) {
+            this.year = year;
+            return this;
+        }
+
+        public Car build() {
+            return new Car(this);
         }
     }
 }
