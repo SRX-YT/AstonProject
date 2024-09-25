@@ -1,5 +1,5 @@
 package service.validation;
 
 public interface Validationable {
-    // Общий интерфейс для реализаций валидации.
+    boolean validate(T product);
 }
