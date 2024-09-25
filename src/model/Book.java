@@ -1,26 +1,14 @@
 package model;
 
-public class Book implements Comparable<Book>{
-    private String author;
-    private String title;
-    private int numPages;
+public class Book implements Comparable<Book> {
+    private final String author;
+    private final String title;
+    private final int pages;
 
-    private Book(BookBuilder bookBuilder) {
-        if (bookBuilder.author == null) {
-            this.author = "Неизвестный автор";
-        } else {
-            this.author = bookBuilder.author;
-        }
-
-        if (bookBuilder.title == null) {
-            this.title = "Неизвестное произведение";
-        } else {
-            this.title = bookBuilder.title;
-        }
-
-        this.numPages = bookBuilder.numPages;
-
-        bookBuilder.resetBookBuilder();
+    private Book(BookBuilder builder) {
+        this.author = builder.author;
+        this.title = builder.title;
+        this.pages = builder.pages;
     }
 
     public String getAuthor() {
@@ -31,8 +19,18 @@ public class Book implements Comparable<Book>{
         return title;
     }
 
-    public int getNumPages() {
-        return numPages;
+    public int getPages() {
+        return pages;
+    }
+
+    @Override
+    public int compareTo(Book other) {
+        return this.title.compareTo(other.title); // Сортировка по названию по умолчанию
+    }
+
+    @Override
+    public String toString() {
+        return "Книга: автор= " + author + ", название= " + title + ", кол-во страниц= " + pages;
     }
 
     @Override
@@ -50,27 +48,11 @@ public class Book implements Comparable<Book>{
         return title == null ? result : title.hashCode() + result;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", numPages=" + numPages +
-                '}';
-    }
-
-    @Override
-    public int compareTo(Book o) {
-        return author.compareTo(o.getAuthor());
-    }
-
+    // Внутренний класс билдер
     public static class BookBuilder {
         private String author;
         private String title;
-        private int numPages;
-
-        public BookBuilder() {
-        }
+        private int pages;
 
         public BookBuilder setAuthor(String author) {
             this.author = author;
@@ -82,19 +64,13 @@ public class Book implements Comparable<Book>{
             return this;
         }
 
-        public BookBuilder setNumPages(int numPages) {
-            this.numPages = numPages;
+        public BookBuilder setPages(int pages) {
+            this.pages = pages;
             return this;
         }
 
         public Book build() {
             return new Book(this);
-        }
-
-        public void resetBookBuilder() {
-            this.author = null;
-            this.title = null;
-            this.numPages = 0;
         }
     }
 }
