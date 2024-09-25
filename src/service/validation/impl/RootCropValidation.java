@@ -9,7 +9,7 @@ public class RootCropValidation implements Validationable<RootCrop> {
         return product.getType() != null &&
                 !product.getType().isEmpty() &&
                 product.getWeight() > 0 &&
-                product.getColor() != null &&
-                !product.getColor().isEmpty();
+                product.getColour() != null &&
+                !product.getColour().isEmpty();
     }
 }
