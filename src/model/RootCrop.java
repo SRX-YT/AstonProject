@@ -1,26 +1,14 @@
 package model;
 
-public class RootCrop implements Comparable<RootCrop>{
-    private String type;
-    private double weight;
-    private String colour;
+public class RootCrop implements Comparable<RootCrop> {
+    private final String type;
+    private final double weight;
+    private final String color;
 
-    private RootCrop(RootCropBuilder rootCropBuilder) {
-        if (rootCropBuilder.type == null) {
-            this.type = "Корнеплод обыкновенный";
-        } else {
-            this.type = rootCropBuilder.type;
-        }
-
-        this.weight = rootCropBuilder.weight;
-
-        if (rootCropBuilder.colour == null) {
-            this.colour = "Бесцветный";
-        } else {
-            this.colour = rootCropBuilder.colour;
-        }
-
-        rootCropBuilder.resetRootCrop();
+    private RootCrop(RootCropBuilder builder) {
+        this.type = builder.type;
+        this.weight = builder.weight;
+        this.color = builder.color;
     }
 
     public String getType() {
@@ -31,17 +19,18 @@ public class RootCrop implements Comparable<RootCrop>{
         return weight;
     }
 
-    public String getColour() {
-        return colour;
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public int compareTo(RootCrop other) {
+        return this.type.compareTo(other.type); // Сортировка по типу по умолчанию
     }
 
     @Override
     public String toString() {
-        return "RootCrop{" +
-                "type='" + type + '\'' +
-                ", weight=" + weight +
-                ", colour='" + colour + '\'' +
-                '}';
+        return "Корнеплод: тип= " + type + ", вес= " + weight + ", цвет= " + color;
     }
 
     @Override
@@ -50,28 +39,20 @@ public class RootCrop implements Comparable<RootCrop>{
         if (!(o instanceof RootCrop)) return false;
 
         RootCrop that = (RootCrop) o;
-        return type.equals(that.type) && colour.equals(that.colour);
+        return type.equals(that.type) && color.equals(that.color);
     }
 
     @Override
     public int hashCode() {
-        int result = colour == null ? 0 : colour.hashCode();
+        int result = color == null ? 0 : color.hashCode();
         return type == null ? result : type.hashCode() + result;
     }
 
-
-    @Override
-    public int compareTo(RootCrop o) {
-        return type.compareTo(o.getType());
-    }
-
+    // Внутренний класс билдер
     public static class RootCropBuilder {
         private String type;
         private double weight;
-        private String colour;
-
-        public RootCropBuilder() {
-        }
+        private String color;
 
         public RootCropBuilder setType(String type) {
             this.type = type;
@@ -83,19 +64,13 @@ public class RootCrop implements Comparable<RootCrop>{
             return this;
         }
 
-        public RootCropBuilder setColour(String colour) {
-            this.colour = colour;
+        public RootCropBuilder setColor(String color) {
+            this.color = color;
             return this;
         }
 
         public RootCrop build() {
             return new RootCrop(this);
-        }
-
-        public void resetRootCrop() {
-            this.type = null;
-            this.weight = 0.0;
-            this.colour = null;
         }
     }
 }
