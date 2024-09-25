@@ -1,34 +1,34 @@
 package model;
 
 public class Car implements Comparable<Car> {
-    private Integer horsePower;
-    private Integer yearOfProduction;
-    private String model;
+    private final Integer power;
+    private final Integer year;
+    private final String model;
 
     public Car(CarBuilder carBuilder) {
-        this.horsePower = carBuilder.getHorsePower() == null ? 0 : carBuilder.getHorsePower();
-        this.yearOfProduction = carBuilder.getYearOfProduction() == null ? 0 : carBuilder.getYearOfProduction();
-        this.model = carBuilder.getModel() == null ? "Неизвестно" : carBuilder.getModel();
+        this.power = carBuilder.power;
+        this.year = carBuilder.year;
+        this.model = carBuilder.model;
 
         carBuilder.resetBuilder();
     }
 
-    public Integer getHorsePower() { return this.horsePower; }
+    public Integer getPower() { return this.power; }
 
-    public Integer getYearOfProduction() { return this.yearOfProduction; }
+    public Integer getYear() { return this.year; }
 
     public String getModel() { return this.model; }
 
     @Override
-    public int compareTo(Car o) {
-        return this.getHorsePower() - o.getHorsePower();
+    public int compareTo(Car other) {
+        return this.model.compareTo(other.model);
     }
 
     @Override
     public int hashCode() {
         int result = this.model == null ? 0 : this.model.hashCode();
-        result = 31 * result + this.yearOfProduction;
-        result = 31 * result + this.horsePower;
+        result = 31 * result + this.year;
+        result = 31 * result + this.power;
         return result;
     }
 
@@ -39,30 +39,28 @@ public class Car implements Comparable<Car> {
 
         Car car = (Car) obj;
 
-        if (!this.horsePower.equals(car.horsePower)) return false;
-        if (!this.yearOfProduction.equals(car.yearOfProduction)) return false;
+        if (!this.power.equals(car.power)) return false;
+        if (!this.year.equals(car.year)) return false;
         return this.model.equals(car.model);
     }
 
     @Override
     public String toString() {
-        return this.model + " - " + this.horsePower + " HP, " + yearOfProduction + " year.";
+        return "Авто: модель= " + model + ", мощность= " + power + ", дата выпуска= " + year;
     }
 
     public static class CarBuilder {
-        private Integer horsePower;
-        private Integer yearOfProduction;
+        private Integer power;
+        private Integer year;
         private String model;
 
-        public CarBuilder() { }
-
         public CarBuilder setHorsePower(int horsePower) {
-            this.horsePower = horsePower;
+            this.power = horsePower;
             return this;
         }
 
         public CarBuilder setYearOfProduction(int year) {
-            this.yearOfProduction = year;
+            this.year = year;
             return this;
         }
 
@@ -71,26 +69,14 @@ public class Car implements Comparable<Car> {
             return this;
         }
 
-        public Integer getHorsePower() {
-            return horsePower;
-        }
-
-        public Integer getYearOfProduction() {
-            return yearOfProduction;
-        }
-
-        public String getModel() {
-            return model;
-        }
-
         public Car build() {
             return new Car(this);
         }
 
         public void resetBuilder() {
             this.model = null;
-            this.horsePower = null;
-            this.yearOfProduction = null;
+            this.power = null;
+            this.year = null;
         }
     }
 }
