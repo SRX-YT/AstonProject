@@ -1,4 +1,7 @@
 package service.strategy.random;
 
-public interface RandomFillingStrategy {
+import java.util.List;
+
+public interface RandomFillingStrategy<T> {
+    List<T> generateRandomData(int count);
 }
