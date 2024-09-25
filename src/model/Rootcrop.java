@@ -5,22 +5,22 @@ public class RootCrop implements Comparable<RootCrop>{
     private double weight;
     private String colour;
 
-    private RootCrop(RootCropBuilder RootCropBuilder) {
-        if (RootCropBuilder.type == null) {
+    private RootCrop(RootCropBuilder rootCropBuilder) {
+        if (rootCropBuilder.type == null) {
             this.type = "Корнеплод обыкновенный";
         } else {
-            this.type = RootCropBuilder.type;
+            this.type = rootCropBuilder.type;
         }
 
-        this.weight = RootCropBuilder.weight;
+        this.weight = rootCropBuilder.weight;
 
-        if (RootCropBuilder.colour == null) {
+        if (rootCropBuilder.colour == null) {
             this.colour = "Бесцветный";
         } else {
-            this.colour = RootCropBuilder.colour;
+            this.colour = rootCropBuilder.colour;
         }
 
-        RootCropBuilder.resetRootCrop();
+        rootCropBuilder.resetRootCrop();
     }
 
     public String getType() {
@@ -37,7 +37,7 @@ public class RootCrop implements Comparable<RootCrop>{
 
     @Override
     public String toString() {
-        return "RootVegetable{" +
+        return "RootCrop{" +
                 "type='" + type + '\'' +
                 ", weight=" + weight +
                 ", colour='" + colour + '\'' +
