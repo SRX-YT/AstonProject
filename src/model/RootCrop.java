@@ -45,7 +45,9 @@ public class RootCrop implements Comparable<RootCrop> {
     @Override
     public int hashCode() {
         int result = color == null ? 0 : color.hashCode();
-        return type == null ? result : type.hashCode() + result;
+        result += type == null ? 0 : type.hashCode();
+        result = 31 * result * (int) weight;
+        return result;
     }
 
     // Внутренний класс билдер
