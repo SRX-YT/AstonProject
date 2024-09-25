@@ -1,5 +1,5 @@
 package service.validation;
 
-public interface Validationable {
+public interface Validationable<T> {
     boolean validate(T product);
 }
