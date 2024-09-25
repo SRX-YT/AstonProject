@@ -1,26 +1,26 @@
 package model;
 
-public class Rootcrop implements Comparable<Rootcrop>{
+public class RootCrop implements Comparable<RootCrop>{
     private String type;
     private double weight;
     private String colour;
 
-    private Rootcrop(RootcropBuilder rootcropBuilder) {
-        if (rootcropBuilder.type == null) {
-            this.type = "Корнеплод обыкновенный";
+    private RootCrop(RootCropBuilder RootCropBuilder) {
+        if (RootCropBuilder.type == null) {
+            this.type = "РљРѕСЂРЅРµРїР»РѕРґ РѕР±С‹РєРЅРѕРІРµРЅРЅС‹Р№";
         } else {
-            this.type = rootcropBuilder.type;
+            this.type = RootCropBuilder.type;
         }
 
-        this.weight = rootcropBuilder.weight;
+        this.weight = RootCropBuilder.weight;
 
-        if (rootcropBuilder.colour == null) {
-            this.colour = "Бесцветный";
+        if (RootCropBuilder.colour == null) {
+            this.colour = "Р‘РµСЃС†РІРµС‚РЅС‹Р№";
         } else {
-            this.colour = rootcropBuilder.colour;
+            this.colour = RootCropBuilder.colour;
         }
 
-        rootcropBuilder.resetRootVegetable();
+        RootCropBuilder.resetRootCrop();
     }
 
     public String getType() {
@@ -47,9 +47,9 @@ public class Rootcrop implements Comparable<Rootcrop>{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Rootcrop)) return false;
+        if (!(o instanceof RootCrop)) return false;
 
-        Rootcrop that = (Rootcrop) o;
+        RootCrop that = (RootCrop) o;
         return type.equals(that.type) && colour.equals(that.colour);
     }
 
@@ -61,39 +61,38 @@ public class Rootcrop implements Comparable<Rootcrop>{
 
 
     @Override
-    //сравнение по-умолчанию (сравнивает по типу корнеплода)
-    public int compareTo(Rootcrop o) {
+    public int compareTo(RootCrop o) {
         return type.compareTo(o.getType());
     }
 
-    public static class RootcropBuilder {
+    public static class RootCropBuilder {
         private String type;
         private double weight;
         private String colour;
 
-        public RootcropBuilder() {
+        public RootCropBuilder() {
         }
 
-        public RootcropBuilder setType(String type) {
+        public RootCropBuilder setType(String type) {
             this.type = type;
             return this;
         }
 
-        public RootcropBuilder setWeight(double weight) {
+        public RootCropBuilder setWeight(double weight) {
             this.weight = weight;
             return this;
         }
 
-        public RootcropBuilder setColour(String colour) {
+        public RootCropBuilder setColour(String colour) {
             this.colour = colour;
             return this;
         }
 
-        public Rootcrop build() {
-            return new Rootcrop(this);
+        public RootCrop build() {
+            return new RootCrop(this);
         }
 
-        public void resetRootVegetable() {
+        public void resetRootCrop() {
             this.type = null;
             this.weight = 0.0;
             this.colour = null;

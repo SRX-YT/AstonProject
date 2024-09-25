@@ -7,13 +7,13 @@ public class Book implements Comparable<Book>{
 
     private Book(BookBuilder bookBuilder) {
         if (bookBuilder.author == null) {
-            this.author = "Неизвестный";
+            this.author = "РќРµРёР·РІРµСЃС‚РЅС‹Р№ Р°РІС‚РѕСЂ";
         } else {
             this.author = bookBuilder.author;
         }
 
         if (bookBuilder.title == null) {
-            this.title = "Произведение";
+            this.title = "РќРµРёР·РІРµСЃС‚РЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ";
         } else {
             this.title = bookBuilder.title;
         }
@@ -60,7 +60,6 @@ public class Book implements Comparable<Book>{
     }
 
     @Override
-    //сравнение по-умолчанию (сравнивает по автору)
     public int compareTo(Book o) {
         return author.compareTo(o.getAuthor());
     }
