@@ -14,8 +14,8 @@ public class RandomBookStrategy implements RandomFillingStrategy<Book> {
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             books.add(new Book.BookBuilder()
-                    .setAuthor("Author" + random.nextInt(1, 100))
-                    .setTitle("Title" + random.nextInt(1, 100))
+                    .setAuthor("Author" + random.nextInt(100))
+                    .setTitle("Title" + random.nextInt(100))
                     .setPages((int) (Math.random() * 1000 + 50))
                     .build());
         }
