@@ -14,7 +14,7 @@ public class RandomCarsStrategy implements RandomFillingStrategy<Car> {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             cars.add(new Car.CarBuilder()
-                    .setModel("Model" + random.nextInt(1, 100))
+                    .setModel("Model" + random.nextInt(100))
                     .setPower((int) (Math.random() * 200 + 50))
                     .setYear((int) (Math.random() * 40 + 1980))
                     .build());

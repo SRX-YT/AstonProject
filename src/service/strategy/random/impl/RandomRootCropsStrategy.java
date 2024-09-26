@@ -14,9 +14,9 @@ public class RandomRootCropsStrategy implements RandomFillingStrategy<RootCrop> 
         List<RootCrop> crops = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             crops.add(new RootCrop.RootCropBuilder()
-                    .setType("Тип" + random.nextInt(1, 100))
+                    .setType("Тип" + random.nextInt(100))
                     .setWeight((int) (Math.random() * 10 + 1))
-                    .setColor("Цвет" + random.nextInt(1, 100)) //TODO сделать енам для цвета
+                    .setColor("Цвет" + random.nextInt(100)) //TODO сделать енам для цвета
                     .build());
         }
         return crops;

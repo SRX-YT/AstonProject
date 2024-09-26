@@ -1,44 +1,41 @@
 package service.sort;
 
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MergeSort<T> {
+public class MergeSort<T extends Comparable<T>> {
 
-    public void mergeSort(T[] list, Comparator<T> comparator) {
-        if (list.length > 1) {
-            int middle = list.length / 2;
+    public void mergeSort(List<T> list) {
+        if (list.size() > 1) {
+            int middle = list.size() / 2;
 
-            T[] left = (T[]) new Object[middle];
-            T[] right = (T[]) new Object[list.length - middle];
+            List<T> left = new ArrayList<>(list.subList(0, middle));
+            List<T> right = new ArrayList<>(list.subList(middle, list.size()));
 
-            System.arraycopy(list, 0, left, 0, middle);
-            System.arraycopy(list, middle, right, 0, list.length - middle);
+            mergeSort(left);
+            mergeSort(right);
 
-            mergeSort(left, comparator);
-            mergeSort(right, comparator);
-
-            merge(list, left, right, comparator);
+            merge(list, left, right);
         }
     }
 
-    private void merge(T[] list, T[] left, T[] right, Comparator<T> comparator) {
+    private void merge(List<T> list, List<T> left, List<T> right) {
         int i = 0, j = 0, k = 0;
 
-        while (i < left.length && j < right.length) {
-            if (comparator.compare(left[i], right[j]) <= 0) {
-                list[k++] = left[i++];
+        while (i < left.size() && j < right.size()) {
+            if (left.get(i).compareTo(right.get(j)) <= 0) {
+                list.set(k++, left.get(i++));
             } else {
-                list[k++] = right[j++];
+                list.set(k++, right.get(j++));
             }
         }
 
-        while (i < left.length) {
-            list[k++] = left[i++];
+        while (i < left.size()) {
+            list.set(k++, left.get(i++));
         }
 
-        while (j < right.length) {
-            list[k++] = right[j++];
+        while (j < right.size()) {
+            list.set(k++, right.get(j++));
         }
     }
-
 }
