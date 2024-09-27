@@ -85,6 +85,11 @@ public class AppUtils {
         return dataInputChoice;
     }
 
+    /**
+     * Метод для проверки наличия файла.
+     * @param fileName название файла.
+     * @return true/false.
+     */
     public static boolean isValidFile(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -94,6 +99,11 @@ public class AppUtils {
         return true;
     }
 
+    /**
+     * Метод для проверки пустой ли ли список.
+     * @param products входящий список.
+     * @return true/false.
+     */
     public static boolean isListEmpty(List<?> products) {
         if (products.isEmpty()) {
             System.out.println("Выводить нечего.");
@@ -105,6 +115,12 @@ public class AppUtils {
         }
     }
 
+    /**
+     * Проверяет наличие данных в файле для считывания.
+     * @param lines входящий список.
+     * @param dataInputChoice входящий пользовательский выбор.
+     * @return int выбор пользователя.
+     */
     public static int getEnoughData(List<?> lines, int dataInputChoice) {
         if(lines.isEmpty()){
             System.out.println("Ошибка: нет данных для считывания.");
