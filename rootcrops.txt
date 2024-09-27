@@ -1,0 +1,5 @@
+RootCrop,morkovb,0.5,orange
+RootCrop,svekla,1.3,violet
+RootCrop,pomidor,0.2,red
+RootCrop,pomidor,0.25,green
+RootCrop,pomidor,0.15,yellow
