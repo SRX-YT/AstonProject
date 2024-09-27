@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Прокси-класс, предоставляющий возможность выбора стратегии рандомного заполнения.
+ *
  * @param <T> тип данных, с которым работает RandomFillinger.
  */
 
@@ -14,7 +15,8 @@ public class RandomFillinger<T> {
     public RandomFillinger(RandomFillingStrategy<T> random) {
         this.random = random;
     }
-    public List<T> getRandomData(int count){
+
+    public List<T> getRandomData(int count) {
         return this.random.generateRandomData(count);
     }
 }

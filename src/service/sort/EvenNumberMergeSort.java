@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Класс-реализация сортировки MergeSort по четным числам с единственным методом evenMergeSort.
+ *
  * @param <T> тип данных для сортировки.
  */
 
@@ -17,6 +18,7 @@ public class EvenNumberMergeSort<T extends Comparable<T>> {
 
     /**
      * Открытый метод для осуществления сортировки MergeSort по четным числам.
+     *
      * @param list принимаемый список для сортировки.
      */
     public void evenMergeSort(List<T> list, Comparator comparator) {

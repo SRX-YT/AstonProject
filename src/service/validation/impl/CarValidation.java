@@ -3,7 +3,7 @@ package service.validation.impl;
 import model.Car;
 import service.validation.Validationable;
 
-public class CarValidation implements Validationable<Car>{
+public class CarValidation implements Validationable<Car> {
 
     @Override
     public boolean validate(Car product) {

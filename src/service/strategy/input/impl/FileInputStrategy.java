@@ -39,7 +39,7 @@ public class FileInputStrategy<T> implements InputStrategy<T>, FileNameSetable, 
             throw new IOException("Ошибка чтения файла", e);
         }
         count = AppUtils.getEnoughData(lines, count);
-        if(count != 0) {
+        if (count != 0) {
             List<T> dataList = new ArrayList<>();
             for (int i = 0; i < count; i++) {
                 try {

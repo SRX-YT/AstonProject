@@ -19,6 +19,7 @@ public class AppUtils {
 
     /**
      * Промптер без выводящегося пользователю сообщения.
+     *
      * @return возвращает вводимую через консоль строку.
      */
     public static String promptWithOutMessage() {
@@ -28,6 +29,7 @@ public class AppUtils {
 
     /**
      * Промптер с выводящимся пользователю сообщением.
+     *
      * @param message - сообщение пользователю.
      * @return - возвращает вводимую через консоль строку.
      */
@@ -39,6 +41,7 @@ public class AppUtils {
 
     /**
      * Парсер с выводящимся сообщением об ошибке.
+     *
      * @param input        входная строка.
      * @param errorMessage потенциально выводимое сообщение об ошибке.
      * @return при успешном парсинге возвращает int, иначе выводит сообщение об ошибке.
@@ -53,7 +56,8 @@ public class AppUtils {
     }
 
     /**
-     * Валидатор числового ввода - не отпустит, пока не сделан правильный выбор ;)
+     * Валидатор числового ввода - не отпустит, пока не сделан правильный выбор.)
+     *
      * @param leftBound  левая граница.
      * @param rightBound правая граница.
      * @param appMenu    объект {@link AppMenu}
@@ -71,6 +75,7 @@ public class AppUtils {
 
     /**
      * Локальный валидатор числового ввода.
+     *
      * @param dataInputChoice выбор пользователя.
      * @return при успехе возвращает int, иначе не отпустит.
      */
@@ -83,6 +88,7 @@ public class AppUtils {
 
     /**
      * Метод для проверки наличия файла.
+     *
      * @param fileName название файла.
      * @return true/false.
      */
@@ -97,6 +103,7 @@ public class AppUtils {
 
     /**
      * Метод для проверки пустой ли список.
+     *
      * @param products входящий список.
      * @return true/false.
      */
@@ -113,12 +120,13 @@ public class AppUtils {
 
     /**
      * Проверяет наличие данных в файле для считывания.
-     * @param lines входящий список.
+     *
+     * @param lines           входящий список.
      * @param dataInputChoice входящий пользовательский выбор.
      * @return int выбор пользователя.
      */
     public static int getEnoughData(List<?> lines, int dataInputChoice) {
-        if(lines.isEmpty()){
+        if (lines.isEmpty()) {
             System.out.println("Ошибка: нет данных для считывания.");
             return 0;
         } else {

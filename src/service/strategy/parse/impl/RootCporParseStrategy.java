@@ -18,7 +18,7 @@ public class RootCporParseStrategy implements ParseStrategy<RootCrop> {
                 System.out.println("Ошибка: некорректное количество параметров в строке.");
                 return Optional.empty();
             }
-            if(!parts[0].toLowerCase().equalsIgnoreCase(RootCrop.class.getSimpleName())){
+            if (!parts[0].toLowerCase().equalsIgnoreCase(RootCrop.class.getSimpleName())) {
                 System.out.println("Ошибка: выбранный тип продукта и тип из файла не совпадают!");
                 return Optional.empty();
             }

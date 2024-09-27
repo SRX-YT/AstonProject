@@ -14,8 +14,9 @@ public class RootCropBinarySearch implements BinarySearchable<RootCrop> {
 
     /**
      * Реализация метода для осуществления бинарного поиска по отсортированному списку.
+     *
      * @param sortedList принимаемый отсортированный список объектов RootCrop.
-     * @param target входящее значение поля объекта RootCrop для поиска.
+     * @param target     входящее значение поля объекта RootCrop для поиска.
      * @return возвращает Optional объекта RootCrop.
      */
 

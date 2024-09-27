@@ -14,8 +14,9 @@ public class CarBinarySearch implements BinarySearchable<Car> {
 
     /**
      * Реализация метода для осуществления бинарного поиска по отсортированному списку.
+     *
      * @param sortedList принимаемый отсортированный список объектов Car.
-     * @param target входящее значение поля объекта Car для поиска.
+     * @param target     входящее значение поля объекта Car для поиска.
      * @return возвращает Optional объекта Car.
      */
 

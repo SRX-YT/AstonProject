@@ -11,12 +11,13 @@ import java.util.Optional;
  * для осуществления бинарного поиска по объектам класса Book.
  */
 
-public class BookBinarySerach implements BinarySearchable<Book> {
+public class BookBinarySearch implements BinarySearchable<Book> {
 
     /**
      * Реализация метода для осуществления бинарного поиска по отсортированному списку.
+     *
      * @param sortedList принимаемый отсортированный список объектов Book.
-     * @param target входящее значение поля объекта Book для поиска.
+     * @param target     входящее значение поля объекта Book для поиска.
      * @return возвращает Optional объекта Book.
      */
     @Override
