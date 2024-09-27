@@ -7,7 +7,7 @@ public class ProductPrompter {
         this.promptStrategy = promptStrategy;
     }
 
-    public String promptInfo() {
+    public String prompt() {
         return this.promptStrategy.prompt();
     }
 }
