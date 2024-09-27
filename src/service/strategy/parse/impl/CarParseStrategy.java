@@ -8,6 +8,7 @@ import util.AppUtils;
 import java.util.Optional;
 
 public class CarParseStrategy implements ParseStrategy<Car> {
+
     @Override
     public Optional<Car> parse(String line) {
         try {

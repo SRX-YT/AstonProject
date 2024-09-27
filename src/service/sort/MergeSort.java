@@ -3,8 +3,17 @@ package service.sort;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс-реализация сортировки MergeSort.
+ * @param <T> тип данных для сортировки.
+ */
+
 public class MergeSort<T extends Comparable<T>> {
 
+    /**
+     * Открытый метод для осуществления сортировки MergeSort с единственным методом mergeSort.
+     * @param list принимаемый список для сортировки.
+     */
     public void mergeSort(List<T> list) {
         if (list.size() > 1) {
             int middle = list.size() / 2;

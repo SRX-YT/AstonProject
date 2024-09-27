@@ -50,7 +50,8 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        return "Авто: модель= " + model + ", мощность= " + power + ", дата выпуска= " + year;
+        return "Авто: модель= " + model +
+                ", мощность= " + power + ", дата выпуска= " + year;
     }
 
     public static class CarBuilder {

@@ -8,6 +8,7 @@ import util.AppUtils;
 import java.util.Optional;
 
 public class RootCporParseStrategy implements ParseStrategy<RootCrop> {
+
     @Override
     public Optional<RootCrop> parse(String line) {
         try {
