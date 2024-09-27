@@ -20,6 +20,9 @@ import service.strategy.random.impl.RandomRootCropsStrategy;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Утилитный класс с методами получения стратегий по id.<br>
+ */
 public class StrategyGetterUtil {
 
     private StrategyGetterUtil() {

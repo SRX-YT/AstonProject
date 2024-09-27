@@ -12,18 +12,14 @@ public class AppMenu {
         MAIN_MENU,
         DATA_INPUT_MENU,
         PRODUCT_CHOICE_MENU,
-        SORTING_MENU,
-        CAR_FILED_CHOICE,
-        BOOK_FILED_CHOICE,
-        ROOT_CROP_FIELD_CHOICE,
-        ASCENDING_CHOICE
+        SORTING_MENU
     }
 
     private final Map<MenuType, List<String>> menus = new HashMap<>();
 
     public AppMenu() {
         menus.put(MenuType.MAIN_MENU, Arrays.asList(
-                "Выберите действие:",
+                "\nВыберите действие:",
                 "1. Выбор метода ввода данных",
                 "2. Выбор алгоритма сортировки",
                 "3. Выполнить бинарный поиск",
@@ -31,45 +27,24 @@ public class AppMenu {
         ));
 
         menus.put(MenuType.DATA_INPUT_MENU, Arrays.asList(
-                "Выберите способ ввода данных:",
+                "\nВыберите способ ввода данных:",
                 "1. Из файла",
                 "2. Вручную",
                 "3. Случайным образом"
         ));
 
         menus.put(MenuType.PRODUCT_CHOICE_MENU, Arrays.asList(
-                "Выберите вид продукта:",
+                "\nВыберите вид продукта:",
                 "1. Авто",
                 "2. Книга",
                 "3. Корнеплод (чтоб его за ногу)"
         ));
-        menus.put(MenuType.CAR_FILED_CHOICE, Arrays.asList(
-                "Выберите поле продукта:",
-                "1. Модель",
-                "2. Мощность",
-                "3. Год выпуска"
-        ));
 
-        menus.put(MenuType.BOOK_FILED_CHOICE, Arrays.asList(
-                "Выберите поле продукта:",
-                "1. Автор",
-                "2. Название",
-                "3. Кол-во страниц"
+        menus.put(MenuType.SORTING_MENU, Arrays.asList(
+                "\nКак сортировать:",
+                "1. MergeSort",
+                "2. MergeSort по четным"
         ));
-
-        menus.put(MenuType.ROOT_CROP_FIELD_CHOICE, Arrays.asList(
-                "Выберите поле продукта:",
-                "1. Тип корнеплода",
-                "2. Вес корнеплода",
-                "3. Цвет корнеплода"
-        ));
-
-        menus.put(MenuType.ASCENDING_CHOICE, Arrays.asList(
-                "Как сортировать:",
-                "1. По возрастанию",
-                "2. По убыванию"
-        ));
-
     }
 
     public int showMenu(MenuType menuType) {
