@@ -10,12 +10,12 @@ import java.util.Random;
 public class RandomBookStrategy implements RandomFillingStrategy<Book> {
     @Override
     public List<Book> generateRandomData(int count) {
-        Random random = new Random(); //TODO убрать в рандомайзер
+        Random random = new Random();
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             books.add(new Book.BookBuilder()
-                    .setAuthor("Author" + random.nextInt(100))
-                    .setTitle("Title" + random.nextInt(100))
+                    .setAuthor("Автор" + random.nextInt(1, 100))
+                    .setTitle("Название" + random.nextInt(1, 100))
                     .setPages((int) (Math.random() * 1000 + 50))
                     .build());
         }

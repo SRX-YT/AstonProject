@@ -10,26 +10,30 @@ import java.util.Optional;
 public class BookParseStrategy implements ParseStrategy<Book> {
     @Override
     public Optional<Book> parse(String line) {
-        Book book;
-        String[] parts = line.split(",");
-        if (parts.length != 4) {
-            throw new IllegalArgumentException("Некорректное количество параметров в строке.");
-        }
-        if(!parts[0].toLowerCase().equalsIgnoreCase(Book.class.getSimpleName())){
-            throw new IllegalArgumentException("Выбранный тип продукта и тип из файла не совпадают!");
-        }
         try {
-            book = new Book.BookBuilder() //TODO добавить проверки корректности ТИПА вводимых значений.
+            Book book;
+            String[] parts = line.split(",");
+            if (parts.length != 4) {
+                System.out.println("Ошибка: некорректное количество параметров в строке.");
+                return Optional.empty();
+            }
+            if (!parts[0].toLowerCase().equalsIgnoreCase(Book.class.getSimpleName())) {
+                System.out.println("Ошибка: выбранный тип продукта и тип из файла не совпадают!");
+                return Optional.empty();
+            }
+            book = new Book.BookBuilder()
                     .setAuthor(parts[1])
                     .setTitle(parts[2])
                     .setPages(AppUtils.parseInteger(parts[3], "Количество страниц должно быть числом."))
                     .build();
             if (!new BookValidation().validate(book)) {
-                throw new IllegalArgumentException("Данные для полей не валидны.");
+                System.out.println("Ошибка: данные для полей не валидны.");
+                return Optional.empty();
             }
+            return Optional.of(book);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Тип данных после парсинга некорректен." + e.getMessage());
+            System.out.println("Ошибка: тип данных после парсинга некорректен." + e.getMessage());
+            return Optional.empty();
         }
-        return Optional.of(book);
     }
 }
