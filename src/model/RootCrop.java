@@ -2,7 +2,7 @@ package model;
 
 public class RootCrop implements Comparable<RootCrop> {
     private final String type;
-    private final double weight;
+    private final int weight;
     private final String color;
 
     private RootCrop(RootCropBuilder builder) {
@@ -25,7 +25,7 @@ public class RootCrop implements Comparable<RootCrop> {
 
     @Override
     public int compareTo(RootCrop other) {
-        return this.type.compareTo(other.type); // Сортировка по типу по умолчанию
+        return this.type.compareTo(other.type);
     }
 
     @Override
@@ -50,10 +50,9 @@ public class RootCrop implements Comparable<RootCrop> {
         return result;
     }
 
-    // Внутренний класс билдер
     public static class RootCropBuilder {
         private String type;
-        private double weight;
+        private int weight;
         private String color;
 
         public RootCropBuilder setType(String type) {
@@ -61,7 +60,7 @@ public class RootCrop implements Comparable<RootCrop> {
             return this;
         }
 
-        public RootCropBuilder setWeight(double weight) {
+        public RootCropBuilder setWeight(int weight) {
             this.weight = weight;
             return this;
         }
