@@ -25,7 +25,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car other) {
-        return this.model.compareTo(other.model); // Сортировка по модели по умолчанию
+        return this.model.compareTo(other.model);
     }
 
     @Override
