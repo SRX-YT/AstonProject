@@ -7,7 +7,7 @@ import presentation.AppMenu;
 import service.comparator.BookPagesComparator;
 import service.comparator.CarPowerComparator;
 import service.comparator.RootCropWeightComparator;
-import service.search.impl.BookBinarySerach;
+import service.search.impl.BookBinarySearch;
 import service.search.impl.CarBinarySearch;
 import service.search.impl.RootCropBinarySearch;
 import service.sort.EvenNumberMergeSort;
@@ -180,7 +180,7 @@ public class AppService {
             } else System.out.println("\nНичего не найдено :(");
         } else if (sortedProducts.get(0) instanceof Book) {
             String target = AppUtils.prompt("\nВведите название книги: \n");
-            Optional<Book> book = new BookBinarySerach().binarySearch(
+            Optional<Book> book = new BookBinarySearch().binarySearch(
                     (List<Book>) sortedProducts, target);
             if (book.isPresent()) {
                 System.out.println(book.get());
