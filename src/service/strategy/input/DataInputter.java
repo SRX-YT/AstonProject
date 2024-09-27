@@ -10,7 +10,7 @@ public class DataInputter<T> {
         this.inputStrategy = (InputStrategy<T>) inputStrategy;
     }
 
-    public List<T> getInputData(int count) throws IOException {
+    public List<T> input(int count) throws IOException {
         return this.inputStrategy.input(count);
     }
 

@@ -35,7 +35,7 @@ public class ManualInputStrategy<T> implements InputStrategy<T>, ParseSetable, P
     }
 
     private T inputObjectData() throws IOException {
-        String infoLine = promptStrategy.promptInfo();
+        String infoLine = promptStrategy.prompt();
         return parser.parseProduct(infoLine).get();
     }
 }

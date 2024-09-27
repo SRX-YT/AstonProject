@@ -10,26 +10,30 @@ import java.util.Optional;
 public class RootCporParseStrategy implements ParseStrategy<RootCrop> {
     @Override
     public Optional<RootCrop> parse(String line) {
-        RootCrop rootCrop;
-        String[] parts = line.split(",");
-        if (parts.length != 4) {
-            throw new IllegalArgumentException("Некорректное количество параметров в строке.");
-        }
-        if(!parts[0].toLowerCase().equalsIgnoreCase(RootCrop.class.getSimpleName())){
-            throw new IllegalArgumentException("Выбранный тип продукта и тип из файла не совпадают!");
-        }
         try {
-            rootCrop = new RootCrop.RootCropBuilder()//TODO добавить проверки корректности ТИПА вводимых значений.
+            RootCrop rootCrop;
+            String[] parts = line.split(",");
+            if (parts.length != 4) {
+                System.out.println("Ошибка: некорректное количество параметров в строке.");
+                return Optional.empty();
+            }
+            if(!parts[0].toLowerCase().equalsIgnoreCase(RootCrop.class.getSimpleName())){
+                System.out.println("Ошибка: выбранный тип продукта и тип из файла не совпадают!");
+                return Optional.empty();
+            }
+            rootCrop = new RootCrop.RootCropBuilder()
                     .setType(parts[1])
-                    .setWeight(AppUtils.parseDouble(parts[2], "Вес корнеплода должен быть числом.")) // TODO: здесь дабл, не интежер!
+                    .setWeight(AppUtils.parseInteger(parts[2], "Вес корнеплода должен быть числом."))
                     .setColor(parts[3])
                     .build();
             if (!new RootCropValidation().validate(rootCrop)) {
-                throw new IllegalArgumentException("Данные для полей не валидны.");
+                System.out.println("Ошибка: данные для полей не валидны.");
+                return Optional.empty();
             }
+            return Optional.of(rootCrop);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Тип данных после парсинга некорректен." + e.getMessage());
+            System.out.println("Ошибка: тип данных после парсинга некорректен." + e.getMessage());
+            return Optional.empty();
         }
-        return Optional.of(rootCrop);
     }
 }
