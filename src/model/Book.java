@@ -50,7 +50,6 @@ public class Book implements Comparable<Book> {
         return result;
     }
 
-    // Внутренний класс билдер
     public static class BookBuilder {
         private String author;
         private String title;
