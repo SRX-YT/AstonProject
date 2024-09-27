@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс для выбора вариантов меню, отображающегося пользователю.
+ */
+
 public class AppMenu {
     public enum MenuType {
         MAIN_MENU,

@@ -8,6 +8,7 @@ import util.AppUtils;
 import java.util.Optional;
 
 public class BookParseStrategy implements ParseStrategy<Book> {
+
     @Override
     public Optional<Book> parse(String line) {
         try {

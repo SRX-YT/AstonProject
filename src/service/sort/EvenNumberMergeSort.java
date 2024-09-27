@@ -8,10 +8,18 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Класс-реализация сортировки MergeSort по четным числам с единственным методом evenMergeSort.
+ * @param <T> тип данных для сортировки.
+ */
+
 public class EvenNumberMergeSort<T extends Comparable<T>> {
 
+    /**
+     * Открытый метод для осуществления сортировки MergeSort по четным числам.
+     * @param list принимаемый список для сортировки.
+     */
     public void evenMergeSort(List<T> list, Comparator comparator) {
-        // Сначала создадим список для четных элементов
         List<T> evenElements = new ArrayList<>();
 
         for (T item : list) {
@@ -20,20 +28,16 @@ public class EvenNumberMergeSort<T extends Comparable<T>> {
             }
         }
 
-        // Сортируем только четные элементы
         mergeSortEven(evenElements, comparator);
 
-        // Вставляем отсортированные четные элементы обратно в исходный список
         int evenIndex = 0;
         for (int i = 0; i < list.size(); i++) {
             if (isEven(list.get(i))) {
                 list.set(i, evenElements.get(evenIndex++));
             }
         }
-        return;
     }
 
-    // Проверка на четность.
     private boolean isEven(T item) {
         if (item instanceof Car) {
             return ((Car) item).getPower() % 2 == 0;
@@ -44,7 +48,7 @@ public class EvenNumberMergeSort<T extends Comparable<T>> {
         if (item instanceof RootCrop) {
             return ((RootCrop) item).getWeight() % 2 == 0;
         }
-        return false; // Возвращаем false по умолчанию для других типов
+        return false;
     }
 
     private void mergeSortEven(List<T> list, Comparator comparator) {

@@ -4,6 +4,7 @@ import model.Car;
 import service.validation.Validationable;
 
 public class CarValidation implements Validationable<Car>{
+
     @Override
     public boolean validate(Car product) {
         return product.getModel() != null &&

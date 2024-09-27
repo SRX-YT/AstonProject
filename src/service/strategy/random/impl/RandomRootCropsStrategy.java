@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomRootCropsStrategy implements RandomFillingStrategy<RootCrop> {
+
     @Override
     public List<RootCrop> generateRandomData(int count) {
         Random random = new Random();

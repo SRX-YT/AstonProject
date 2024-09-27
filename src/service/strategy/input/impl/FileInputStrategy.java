@@ -38,7 +38,7 @@ public class FileInputStrategy<T> implements InputStrategy<T>, FileNameSetable, 
         } catch (IOException e) {
             throw new IOException("Ошибка чтения файла", e);
         }
-        count = AppUtils.getEnoughData(lines, count); //проверяем, достаточно ли данных в файле.
+        count = AppUtils.getEnoughData(lines, count);
         if(count != 0) {
             List<T> dataList = new ArrayList<>();
             for (int i = 0; i < count; i++) {
@@ -46,7 +46,7 @@ public class FileInputStrategy<T> implements InputStrategy<T>, FileNameSetable, 
                     T object = (T) parser.parseProduct(lines.get(i)).get();
                     dataList.add(object);
                 } catch (NumberFormatException | NoSuchElementException e) {
-                    System.out.println("Данные в файле некорректны!" + e.getMessage()); // TODO Возможно убрать отсюда валидацию.
+                    System.out.println("Данные в файле некорректны!" + e.getMessage());
                 }
             }
             return dataList;

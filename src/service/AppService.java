@@ -33,6 +33,7 @@ import static util.StrategyGetterUtil.*;
 /**
  * Класс, инкапсулирующий основную логику приложения.
  */
+
 public class AppService {
 
     private final AppMenu appMenu;
@@ -43,6 +44,7 @@ public class AppService {
 
     /**
      * Метод обработки вариантов ввода: из файла, ручной, рандомный.
+     *
      * @param inputChoice входная переменная выбора варианта ввода.
      * @return при успешной обработке возвращает заполненную указанным способ коллекцию.
      * @throws IOException
@@ -54,8 +56,8 @@ public class AppService {
 
         switch (inputChoice) {
             case 1 -> {
-                strategy = getInputStrategies(1); // Выбираем стратегию ввода из файла (id == 1).
-                InputStrategy<?> inputStrategy = strategy.getInputStrategy(); // Получаем конкретную стратегию, чтобы засеттить данные.
+                strategy = getInputStrategies(1);
+                InputStrategy<?> inputStrategy = strategy.getInputStrategy();
                 String fileName = prompt("\nВведите наименование файла: \n");
 
                 if (!AppUtils.isValidFile(fileName)) {
@@ -63,50 +65,62 @@ public class AppService {
                 }
                 if (inputStrategy instanceof FileInputStrategy<?>) {
                     ((FileNameSetable) inputStrategy).setFileName(fileName);
-                }  else {
+                } else {
                     System.out.println("Ошибка выбора стратегии ввода: не поддерживается.");
                     return products;
                 }
 
-                int productId = AppUtils.getValidPrompt(1, 3, appMenu, AppMenu.MenuType.PRODUCT_CHOICE_MENU);
+                int productId = AppUtils.getValidPrompt(1, 3, appMenu,
+                        AppMenu.MenuType.PRODUCT_CHOICE_MENU);
+
                 ((ParseSetable) inputStrategy).setParseStrategy(getParseStrategies(productId));
 
-                int count = AppUtils.getValidLocalPrompt(parseInteger(prompt("\nУкажите кол-во считываемых элементов: \n"), "Ввод должен быть числом")); //TODO
+                int count = AppUtils.getValidLocalPrompt(parseInteger(
+                        prompt("\nУкажите кол-во считываемых элементов: \n"),
+                        "Ввод должен быть числом"));
 
                 products = strategy.input(count);
 
                 return products;
             }
             case 2 -> {
-                strategy = getInputStrategies(2); // Выбираем стратегию ввода вручную (id == 2).
-                InputStrategy<?> inputStrategy = strategy.getInputStrategy(); // Получаем конкретную стратегию, чтобы засеттить данные.
-                int productId = AppUtils.getValidPrompt(1, 3, appMenu, AppMenu.MenuType.PRODUCT_CHOICE_MENU);
+                strategy = getInputStrategies(2);
+                InputStrategy<?> inputStrategy = strategy.getInputStrategy();
+                int productId = AppUtils.getValidPrompt(1, 3, appMenu,
+                        AppMenu.MenuType.PRODUCT_CHOICE_MENU);
 
                 if (inputStrategy instanceof ManualInputStrategy<?>) {
-                    ((ManualInputStrategy<?>) inputStrategy).setParseStrategy(getParseStrategies(productId));
-                    ((ManualInputStrategy<?>) inputStrategy).setPromptStrategy(getPromptStrategies(productId));
+                    ((ManualInputStrategy<?>) inputStrategy)
+                            .setParseStrategy(getParseStrategies(productId));
+                    ((ManualInputStrategy<?>) inputStrategy)
+                            .setPromptStrategy(getPromptStrategies(productId));
                 } else {
                     System.out.println("Ошибка выбора стратегии ввода: не поддерживается.");
                     return products;
                 }
 
-                int count = parseInteger(prompt("\nУкажите кол-во вводимых элементов: \n"), "Ввод должен быть числом"); //TODO
+                int count = parseInteger(prompt("\nУкажите кол-во вводимых элементов: " + "\n"),
+                        "Ввод должен быть числом");
                 products = strategy.input(count);
                 return products;
             }
             case 3 -> {
-                strategy = getInputStrategies(3); // Выбираем стратегию ввода рандомом (id == 3).
-                InputStrategy<?> inputStrategy = strategy.getInputStrategy(); // Получаем конкретную стратегию, чтобы засеттить данные.
-                int productId = AppUtils.getValidPrompt(1, 3, appMenu, AppMenu.MenuType.PRODUCT_CHOICE_MENU);
+                strategy = getInputStrategies(3);
+                InputStrategy<?> inputStrategy = strategy.getInputStrategy();
+                int productId = AppUtils.getValidPrompt(1, 3, appMenu,
+                        AppMenu.MenuType.PRODUCT_CHOICE_MENU);
 
                 if (inputStrategy instanceof RandomInputStrategy<?>) {
-                    ((RandomInputStrategy<?>) inputStrategy).setRandomGeneratorStrategy(getRandomFillingStrategies(productId));
+                    ((RandomInputStrategy<?>) inputStrategy)
+                            .setRandomGeneratorStrategy(getRandomFillingStrategies(productId));
                 } else {
                     System.out.println("Ошибка выбора стратегии ввода: не поддерживается.");
                     return products;
                 }
 
-                int count = AppUtils.getValidLocalPrompt(parseInteger(prompt("\nУкажите кол-во считываемых элементов: \n"), "Ввод должен быть числом")); //TODO
+                int count = AppUtils.getValidLocalPrompt(parseInteger(
+                        prompt("\nУкажите кол-во считываемых элементов: " + "\n"),
+                        "Ввод должен быть числом"));
                 products = strategy.input(count);
                 return products;
             }
@@ -115,6 +129,13 @@ public class AppService {
         return products;
     }
 
+    /**
+     * Метод для обработки при выборе вида сортировки: MergeSort, EvenNumberMergeSort.
+     *
+     * @param products входящий список.
+     * @param choice   пользовательский выбор вида сортировки.
+     * @return возвращает отсортированный список.
+     */
     public List<?> getHandleSorting(List<?> products, int choice) {
         switch (choice) {
             case 1 -> {
@@ -124,16 +145,19 @@ public class AppService {
 
             case 2 -> {
                 if (products.get(0) instanceof Car) {
-                    new EvenNumberMergeSort<>().evenMergeSort((List) products, new CarPowerComparator());
+                    new EvenNumberMergeSort<>().evenMergeSort(
+                            (List) products, new CarPowerComparator());
                     return products;
                 } else if (products.get(0) instanceof Book) {
-                    new EvenNumberMergeSort<>().evenMergeSort((List) products, new BookPagesComparator());
+                    new EvenNumberMergeSort<>().evenMergeSort(
+                            (List) products, new BookPagesComparator());
                     return products;
                 } else if (products.get(0) instanceof RootCrop) {
-                    new EvenNumberMergeSort<>().evenMergeSort((List) products, new RootCropWeightComparator());
+                    new EvenNumberMergeSort<>().evenMergeSort(
+                            (List) products, new RootCropWeightComparator());
                     return products;
                 } else {
-                    System.out.println("\nСписок заполнен чем-то не тем."); //TODO: если сначала пройти все 3 этапа и через мерге сорт, а потом снова выбрать сортировку, но уже по четным, тогда выходит это сообщение. Это потому, что я создаю копию для четной сортировки.
+                    System.out.println("\nСписок заполнен чем-то не тем.");
                 }
             }
             default -> System.out.println("\nНекорректный выбор.");
@@ -141,22 +165,30 @@ public class AppService {
         return List.of();
     }
 
-    public void getHandleBinarySearch(List<?> products) {
-        if (products.get(0) instanceof Car) {
+    /**
+     * Метод для выполнения бинарного поиска по отсортированному списку.
+     *
+     * @param sortedProducts входящий отсортированный список.
+     */
+    public void getHandleBinarySearch(List<?> sortedProducts) {
+        if (sortedProducts.get(0) instanceof Car) {
             String target = AppUtils.prompt("\nВведите наименование модели: \n");
-            Optional<Car> car = new CarBinarySearch().binarySearch((List<Car>) products, target);
+            Optional<Car> car = new CarBinarySearch().binarySearch(
+                    (List<Car>) sortedProducts, target);
             if (car.isPresent()) {
                 System.out.println(car.get());
             } else System.out.println("\nНичего не найдено :(");
-        } else if (products.get(0) instanceof Book) {
+        } else if (sortedProducts.get(0) instanceof Book) {
             String target = AppUtils.prompt("\nВведите название книги: \n");
-            Optional<Book> book = new BookBinarySerach().binarySearch((List<Book>) products, target);
+            Optional<Book> book = new BookBinarySerach().binarySearch(
+                    (List<Book>) sortedProducts, target);
             if (book.isPresent()) {
                 System.out.println(book.get());
             } else System.out.println("\nНичего не найдено :(");
-        } else if (products.get(0) instanceof RootCrop) {
+        } else if (sortedProducts.get(0) instanceof RootCrop) {
             String target = AppUtils.prompt("\nВведите тип корнеплода: \n");
-            Optional<RootCrop> rootCrop = new RootCropBinarySearch().binarySearch((List<RootCrop>) products, target);
+            Optional<RootCrop> rootCrop = new RootCropBinarySearch().binarySearch(
+                    (List<RootCrop>) sortedProducts, target);
             if (rootCrop.isPresent()) {
                 System.out.println(rootCrop.get());
             } else System.out.println("\nНичего не найдено :(");

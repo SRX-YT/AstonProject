@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomBookStrategy implements RandomFillingStrategy<Book> {
+
     @Override
     public List<Book> generateRandomData(int count) {
         Random random = new Random();

@@ -23,6 +23,7 @@ import java.util.Map;
 /**
  * Утилитный класс с методами получения стратегий по id.<br>
  */
+
 public class StrategyGetterUtil {
 
     private StrategyGetterUtil() {
@@ -36,7 +37,8 @@ public class StrategyGetterUtil {
      * 2 - рандом для Книги.<br>
      * 3 - рандом для Корнеплода (чтоб его за ногу).
      * @param id - идентификатор стратегии.
-     * @return RandomFillinger - возвращает общий для стратегий тип RandomFillinger, имеющий метод получения списка рандомных объектов в зависимости от продукта.
+     * @return RandomFillinger - возвращает общий для стратегий тип RandomFillinger,
+     * имеющий метод получения списка рандомных объектов в зависимости от продукта.
      */
     public static RandomFillinger<?> getRandomFillingStrategies(int id) {
         Map<Integer, RandomFillinger<?>> randomFillingStrategies = new HashMap<>();
@@ -52,7 +54,8 @@ public class StrategyGetterUtil {
      * 2 - промпт для Книги.<br>
      * 3 - промпт для Корнеплода (чтоб его за ногу).
      * @param id - идентификатор стратегии.
-     * @return ProductPrompter - возвращает общий для стратегий тип ProductPrompter, имеющий метод промпта в зависимости от продукта.
+     * @return ProductPrompter - возвращает общий для стратегий тип ProductPrompter,
+     * имеющий метод промпта в зависимости от продукта.
      */
     public static ProductPrompter getPromptStrategies(int id) {
         Map<Integer, ProductPrompter> promptStrategies = new HashMap<>();
@@ -68,7 +71,8 @@ public class StrategyGetterUtil {
      * 2 - парсинг Книги.<br>
      * 3 - парсинг Корнеплода (чтоб его за ногу).
      * @param id - идентификатор стратегии.
-     * @return ProductParser - возвращает общий для стратегий тип ProductParser, имеющий метод парсинга в зависимости от продукта.
+     * @return ProductParser - возвращает общий для стратегий тип ProductParser,
+     * имеющий метод парсинга в зависимости от продукта.
      */
     public static ProductParser<?> getParseStrategies(int id) {
         Map<Integer, ProductParser<?>> parserStrategies = new HashMap<>();

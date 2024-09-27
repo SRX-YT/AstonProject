@@ -1,5 +1,9 @@
 package service.strategy.prompt;
 
+/**
+ * Прокси-класс, предоставляющий возможность выбора стратегии считывания для классов-продуктов.
+ */
+
 public class ProductPrompter {
     private final PromptStrategy promptStrategy;
 

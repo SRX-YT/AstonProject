@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomCarsStrategy implements RandomFillingStrategy<Car> {
+
     @Override
     public List<Car> generateRandomData(int count) {
         Random random = new Random();
